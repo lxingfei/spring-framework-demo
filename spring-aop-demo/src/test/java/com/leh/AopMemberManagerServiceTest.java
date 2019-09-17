@@ -37,6 +37,22 @@ public class AopMemberManagerServiceTest {
 		} catch (Exception e) {
 			//e.printStackTrace();
 		}
+
+		/*
+			output:
+			第一步校验参数, validateArgs[0]
+			第二步, 拦截方法, intercept methodmethod-execution
+			环绕 beforeMethod remove start with [Ljava.lang.Object;@f68f0dc
+			AnnotationAspect beforeMethod remove start with [0]
+			[INFO ] [16:26:10] com.leh.aop.aspect.LogAspect - LogAspect 调用方法之前执行 >>>>>>execution(boolean com.leh.aop.service.MemberManagerService.remove(long))
+			[INFO ] [16:26:10] com.leh.aop.service.MemberManagerService - 删除用户
+			[INFO ] [16:26:10] com.leh.aop.aspect.LogAspect - LogAspect 调用方法之后执行 >>>>>>execution(boolean com.leh.aop.service.MemberManagerService.remove(long))
+			[INFO ] [16:26:10] com.leh.aop.aspect.LogAspect - LogAspect 抛出异常之后执行 >>>>>>execution(boolean com.leh.aop.service.MemberManagerService.remove(long))
+			环绕 afterThrowing remove exception with java.lang.Exception: 这是我们自己跑出来的异常
+			环绕 afterMethod remove end with [Ljava.lang.Object;@f68f0dc
+			AnnotationAspect afterMethod remove end with [0]
+			AnnotationAspect afterReturning remove end with null
+		 */
 	}
 	
 	public void testModify(){
