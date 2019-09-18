@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring-aop-demo" />
+        <module name="spring-jdbc-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="spring-aop" target="1.7" />
       <module name="spring-aop-demo" target="1.8" />
       <module name="spring-framework-demo" target="1.5" />
+      <module name="spring-jdbc-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,1 +1,9 @@
+com\leh\aop\aspect\ValidationAspect.class
+javax\core\common\config\CustomConfig.class
+com\leh\aop\dao\MemberDao.class
+com\leh\aop\service\AuthService.class
+com\leh\model\Member.class
+com\leh\aop\aspect\AnnotationAspect.class
+com\leh\aop\service\MemberManagerService.class
 com\leh\aop\aspect\LogAspect.class
+com\leh\aop\aspect\InterceptorAspect.class

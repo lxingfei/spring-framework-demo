@@ -21,6 +21,9 @@
       <configuration>
         <fileset id="fileset" name="Application Beans" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/application-beans.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/application-aop.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/application-common.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/application-context.xml</file>
         </fileset>
       </configuration>
     </facet>

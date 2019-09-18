@@ -11,7 +11,7 @@
 
     <artifactId>spring-aop-demo</artifactId>
     <name>spring-aop-demo</name>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <profiles>
         <profile>
@@ -118,7 +118,7 @@
         </dependency>
         <!-- spring framework end -->
 
-        <!--spring-aop-->
+        <!--spring-aop start-->
         <dependency>
             <groupId>aopalliance</groupId>
             <artifactId>aopalliance</artifactId>
@@ -134,7 +134,8 @@
             <artifactId>cglib-nodep</artifactId>
             <version>3.1</version>
         </dependency>
-        <!--spring-aop-->
+        <!--spring-aop end-->
+
     </dependencies>
 
     <build>

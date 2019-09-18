@@ -3,6 +3,8 @@
 # IntelliJ project files
 .idea
 .imi
-/target
-
-
+/spring-jdbc-demo/target/
+/spring-aop-demo/target/
+/.gitignore
+/.settings
+/.project

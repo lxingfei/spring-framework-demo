@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>spring-aop-demo</module>
+        <module>spring-jdbc-demo</module>
     </modules>
 
     <name>spring-framework-demo</name>
@@ -18,6 +19,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <spring_version>4.3.10.RELEASE</spring_version>
+
+        <mysql_version>5.1.46</mysql_version>
+        <druid_version>1.1.10</druid_version>
 
         <!-- for maven compiler plugin -->
         <java_source_version>1.8</java_source_version>
@@ -52,6 +56,18 @@
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
                 <version>${log4j_version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql_version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid_version}</version>
             </dependency>
 
         </dependencies>

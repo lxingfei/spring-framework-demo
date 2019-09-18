@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/spring-aop-demo/spring-aop-demo.iml" filepath="$PROJECT_DIR$/spring-aop-demo/spring-aop-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-framework-demo.iml" filepath="$PROJECT_DIR$/spring-framework-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-jdbc-demo/spring-jdbc-demo.iml" filepath="$PROJECT_DIR$/spring-jdbc-demo/spring-jdbc-demo.iml" />
     </modules>
   </component>
 </project>
