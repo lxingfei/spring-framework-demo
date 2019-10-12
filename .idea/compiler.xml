@@ -6,15 +6,25 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="shiro-demo" />
         <module name="spring-aop-demo" />
+        <module name="spring-aop-demo (1)" />
         <module name="spring-jdbc-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="jdbc-test" target="1.8" />
+      <module name="rwerwr" target="1.5" />
+      <module name="shiro-demo" target="1.5" />
+      <module name="shiro-test" target="1.5" />
       <module name="spring-aop" target="1.7" />
       <module name="spring-aop-demo" target="1.8" />
+      <module name="spring-aop-demo (1)" target="1.5" />
       <module name="spring-framework-demo" target="1.5" />
       <module name="spring-jdbc-demo" target="1.8" />
+      <module name="spring-shiro" target="1.5" />
+      <module name="spring-shiro-demo" target="1.5" />
+      <module name="test" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

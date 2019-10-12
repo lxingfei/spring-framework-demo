@@ -11,6 +11,8 @@
     <modules>
         <module>spring-aop-demo</module>
         <module>spring-jdbc-demo</module>
+        <module>spring-shiro</module>
+        <module>spring-shiro-demo</module>
     </modules>
 
     <name>spring-framework-demo</name>
