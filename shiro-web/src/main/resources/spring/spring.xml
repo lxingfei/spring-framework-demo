@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <import resource="spring-dao.xml"/>
+    <import resource="spring-redis.xml"/>
+
+    <context:component-scan base-package="com.leh"/>
+
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="login.html"/>
+        <property name="unauthorizedUrl" value="403.html"/>
+        <!--shiro内置的过滤器链-->
+        <property name="filterChainDefinitions">
+            <!--过滤器链是有顺序的，按照从上到下的顺序进行匹配，匹配到之后直接返回 一般 /* 置于最下面-->
+            <value>
+                <!--不需要任何认证，直接可以访问相应的路径-->
+                /login.html = anon
+                <!--提交登录请求的url也不需要认证-->
+                /subLogin = anon
+
+                <!-- ***********************测试内置的filter*********************** -->
+                /testRole=roles["admin"]
+                <!--同时具备admin，admin1角色才能访问 /testRole1-->
+                /testRole1=roles["admin","admin1"]
+                /testPerm=perms["user:update"]
+                <!--同时具备 user:update,user:delete,user:add 权限才能访问 /testPerm1-->
+                /testPerm1=perms["user:update","user:delete","user:add"]
+                <!--***********************测试内置的filter ***********************-->
+
+                <!-- ***********************测试自定义filter ***********************-->
+
+                /testCustomRole=rolesOr["admin","admin1"]
+
+                <!--***********************测试自定义filter ***********************-->
+
+
+                <!--所有的请求，都需要经过认证之后才可以访问相应的路径-->
+                /* = authc
+            </value>
+        </property>
+
+        <!--配置自定义filter-->
+        <property name="filters">
+            <util:map>
+                <entry key="rolesOr" value-ref="rolesOrFilter"/>
+            </util:map>
+        </property>
+    </bean>
+
+    <!--配置自定义的filter-->
+    <bean class="com.leh.shiro.filter.RolesOrFilter" id="rolesOrFilter"/>
+
+    <!--构建shiro需要的对象 SecurityManager-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="customRealm"/>
+        <property name="sessionManager" ref="sessionManager"/>
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="rememberMeManager" ref="rememberMeManager"/>
+    </bean>
+
+    <!--创建自定义Realm-->
+    <bean id="customRealm" class="com.leh.shiro.realm.CustomRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
+
+    <!--加密管理器对象-->
+    <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher" id="credentialsMatcher">
+        <property name="hashAlgorithmName" value="md5"/>
+        <property name="hashIterations" value="1"/>
+    </bean>
+
+    <bean class="com.leh.session.CustomSessionManager" id="sessionManager">
+        <property name="sessionDAO" ref="redisSessionDao"/>
+    </bean>
+    <!--自定义的SessionDao-->
+    <bean class="com.leh.session.RedisSessionDao" id="redisSessionDao"/>
+
+
+    <!--自定义缓存-->
+    <bean class="com.leh.cache.RedisCacheManager" id="cacheManager"/>
+
+    <!--shiro rememberMe-->
+    <bean class="org.apache.shiro.web.mgt.CookieRememberMeManager" id="rememberMeManager">
+        <property name="cookie" ref="cookie"/>
+    </bean>
+
+    <bean class="org.apache.shiro.web.servlet.SimpleCookie" id="cookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="maxAge" value="20000000"/>
+    </bean>
+</beans>

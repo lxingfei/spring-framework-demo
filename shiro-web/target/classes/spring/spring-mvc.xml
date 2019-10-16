@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <context:component-scan base-package="com.leh.controller"/>
+
+    <!--该配置作用是注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter两个Bean，
+    这是Spring MVC为@Controller分发请求所必需的，并且提供了数据绑定支持，@NumberFormatannotation支持，
+    @DateTimeFormat支持，@Valid支持，读写XML的支持(JAXB)和读写JSON的支持(默认Jackson)等功能-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--该配置意思就是指定文件不会被 DispatcherServlet拦截，直接访问，当做静态资源交给Servlet处理，
+    否则 DispatcherServlet会拦截匹配所有的url，包括 *.jsp，*.html，*.js-->
+    <!--location指定的目录不要拦截，直接请求-->
+    <!--mapping:指定目录下的所有文件(**代表所有文件)-->
+    <!--cache-period：设置静态资源在客户端浏览器中的缓存有效时间-->
+    <mvc:resources mapping="/**" location="/" cache-period="31536000"/>
+
+    <!--开启aop-->
+    <aop:config proxy-target-class="true"/>
+
+    <!--shiro 注解方式授权配置-->
+    <bean class="org.apache.shiro.spring.LifecycleBeanPostProcessor" id="beanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+</beans>

@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>../shiro-demo</module>
+        <module>../shiro-web</module>
     </modules>
 
 </project>

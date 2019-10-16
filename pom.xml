@@ -11,7 +11,6 @@
     <modules>
         <module>spring-aop-demo</module>
         <module>spring-jdbc-demo</module>
-        <module>spring-shiro</module>
         <module>spring-shiro-demo</module>
     </modules>
 
@@ -24,6 +23,8 @@
 
         <mysql_version>5.1.46</mysql_version>
         <druid_version>1.1.10</druid_version>
+
+        <common_lang_version>2.6</common_lang_version>
 
         <!-- for maven compiler plugin -->
         <java_source_version>1.8</java_source_version>
@@ -70,6 +71,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid_version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${common_lang_version}</version>
             </dependency>
 
         </dependencies>
