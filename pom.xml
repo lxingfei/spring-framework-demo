@@ -21,7 +21,7 @@
 
         <spring_version>4.3.10.RELEASE</spring_version>
 
-        <mysql_version>5.1.46</mysql_version>
+        <mysql_version>8.0.16</mysql_version>
         <druid_version>1.1.10</druid_version>
 
         <common_lang_version>2.6</common_lang_version>
